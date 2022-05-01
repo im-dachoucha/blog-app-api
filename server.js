@@ -3,6 +3,7 @@ require("dotenv").config()
 const express = require("express")
 const app = express()
 const authRouter = require("./routes/auth")
+const cors = require("cors")
 
 // ? env variables
 const port = process.env.PORT || 3001
@@ -20,13 +21,18 @@ mongoose.connection.once("open", () => {
 // ? to parse incoming requests with json payload
 app.use(express.json())
 
+app.use(cors())
+
 // * different routes
 
 app.get("/", (req, res) => {
   res.json({ message: "home route" })
 })
 
+// ? auth routes
 app.use("/auth", authRouter)
+
+// todo user routes
 
 // ? to catch undefined routes
 app.get("*", (req, res) => {
