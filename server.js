@@ -2,7 +2,7 @@ require("dotenv").config()
 
 const express = require("express")
 const app = express()
-const authRouter = require("./routes/auth")
+const authRoutes = require("./routes/authRoutes")
 const cors = require("cors")
 
 // ? env variables
@@ -30,7 +30,7 @@ app.get("/", (req, res) => {
 })
 
 // ? auth routes
-app.use("/auth", authRouter)
+app.use("/auth", authRoutes)
 
 // todo user routes
 
