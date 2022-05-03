@@ -49,8 +49,8 @@ const register = async (req, res) => {
   }
 }
 
-const generateToken = (payload) => {
-  return jwt.sign({ payload }, process.env.ACCESS_TOKEN_SECRET, {
+const generateToken = (id) => {
+  return jwt.sign({ id }, process.env.ACCESS_TOKEN_SECRET, {
     expiresIn: "1d",
   })
 }
