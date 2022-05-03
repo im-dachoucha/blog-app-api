@@ -4,6 +4,7 @@ const express = require("express")
 const app = express()
 const authRoutes = require("./routes/authRoutes")
 const cors = require("cors")
+const { auth } = require("./middlewares/authMiddleware")
 
 // ? env variables
 const port = process.env.PORT || 3001
@@ -25,8 +26,8 @@ app.use(cors())
 
 // * different routes
 
-app.get("/", (req, res) => {
-  res.json({ message: "home route" })
+app.get("/", auth, (req, res) => {
+  res.json({ user: req.user, message: "home route" })
 })
 
 // ? auth routes
