@@ -3,6 +3,7 @@ require("dotenv").config()
 const express = require("express")
 const app = express()
 const authRoutes = require("./routes/authRoutes")
+const userRoutes = require("./routes/userRoutes")
 const cors = require("cors")
 const { auth } = require("./middlewares/authMiddleware")
 
@@ -33,7 +34,8 @@ app.get("/", auth, (req, res) => {
 // ? auth routes
 app.use("/auth", authRoutes)
 
-// todo user routes
+// ? user routes
+app.use("/user", auth, userRoutes)
 
 // ? to catch undefined routes
 app.get("*", (req, res) => {
