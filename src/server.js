@@ -4,6 +4,7 @@ const express = require("express")
 const app = express()
 const authRoutes = require("./routes/authRoutes")
 const userRoutes = require("./routes/userRoutes")
+const blogRoutes = require("./routes/blogRoutes")
 const cors = require("cors")
 const { auth } = require("./middlewares/authMiddleware")
 
@@ -36,6 +37,9 @@ app.use("/auth", authRoutes)
 
 // ? user routes
 app.use("/user", auth, userRoutes)
+
+// ? blog routes
+app.use("/blogs", auth, blogRoutes)
 
 // ? to catch undefined routes
 app.get("*", (req, res) => {
